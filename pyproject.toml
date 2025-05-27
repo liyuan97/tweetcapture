@@ -1,0 +1,46 @@
+[build-system]
+requires = ["setuptools>=45", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "tweet-capture"
+version = "0.2.5"
+description = "Take a tweet screenshot"
+readme = "README.md"
+license = {text = "MIT"}
+authors = [
+    {name = "Alperen Çetin", email = "xacnio@pm.me"}
+]
+keywords = ["tweet", "screenshot"]
+classifiers = [
+    "Programming Language :: Python :: 3.6",
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+requires-python = ">=3.6"
+dependencies = [
+    "selenium>=4.0.0",
+    "webdriver-manager>=3.8.5",
+    "packaging",
+    "Pillow>=9.3.0",
+    "Flask>=2.0.0",
+    "gunicorn>=20.0.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/Xacnio/tweetcapture"
+Repository = "https://github.com/Xacnio/tweetcapture"
+
+[project.scripts]
+tweetcapture = "tweetcapture.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["tweetcapture*"]
+
+[tool.setuptools.package-data]
+"*" = ["requirements.txt"] 
