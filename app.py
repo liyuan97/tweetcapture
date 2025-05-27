@@ -148,6 +148,9 @@ def screenshot_tweet_get():
         mode = int(request.args.get('mode', 3))
         night_mode = int(request.args.get('night_mode', 0))
         
+        # 添加调试日志
+        print(f"DEBUG: Received parameters - URL: {url}, mode: {mode}, night_mode: {night_mode}")
+        
         # 创建临时文件
         temp_dir = tempfile.gettempdir()
         filename = f"tweet_{uuid.uuid4().hex}.png"
@@ -156,6 +159,8 @@ def screenshot_tweet_get():
         # 创建TweetCapture实例
         tweet = TweetCapture(mode=mode, night_mode=night_mode, overwrite=True)
         tweet.set_chromedriver_path('/usr/bin/chromedriver')
+        
+        print(f"DEBUG: TweetCapture created with mode={tweet.mode}, night_mode={tweet.night_mode}")
         
         # 添加Chrome选项
         tweet.add_chrome_argument('--headless')

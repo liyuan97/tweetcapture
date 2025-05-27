@@ -39,8 +39,10 @@ RUN uv pip install --no-deps .
 RUN addgroup -g 1001 -S appuser && \
     adduser -S appuser -u 1001 -G appuser
 
-# 设置权限
-RUN chown -R appuser:appuser /app /opt/venv
+# 设置权限并复制启动脚本
+RUN chown -R appuser:appuser /app /opt/venv && \
+    chmod +x /app/start.sh
+
 USER appuser
 
 # 暴露端口
@@ -51,4 +53,4 @@ ENV PORT=8080
 ENV PYTHONUNBUFFERED=1
 
 # 启动命令
-CMD ["gunicorn", "--bind", "0.0.0.0:8080", "--workers", "1", "--timeout", "120", "app:app"] 
+CMD ["/app/start.sh"] 
